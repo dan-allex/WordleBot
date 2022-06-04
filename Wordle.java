@@ -23,7 +23,7 @@ public class Wordle {
     public int inputGuess(String guess) {
       this.guessNum += 1;
       this.guesses[this.guessNum - 1] = guess;
-      
+
       displayGame();
 
 
@@ -37,6 +37,41 @@ public class Wordle {
   
       return 0;
   }
+
+  public int countChar(String word, char search) {
+      int count = 0;
+      for (int i = 0; i < word.length(); i++) {
+        if (word.charAt(i) == search) {
+            count++;
+        } 
+      }
+
+      return count;
+  }
+
+  public int nthChar(String word, int index) {
+    int count = 0;
+    char c = word.charAt(index);
+    for (int i = 0; i < word.length(); i++) {
+        if (word.charAt(i) == c) {
+            count++;
+            if (i == index) {
+                return count;
+            }
+        } 
+    }
+    return count;
+  }
+
+  public int charsInCorrectPos(String guess, String correct, char c) {
+    int count = 0;
+    for (int i = 0; i < correct.length(); i++) {
+        if (correct.charAt(i) == c && guess.charAt(i) == c) {
+            count++;
+        } 
+    }
+    return count;
+  }
   
     public void displayGame() {
       for (int i = 0; i < this.guesses.length; i++) {
@@ -46,7 +81,7 @@ public class Wordle {
           if (word.charAt(j) == this.correctWord.charAt(j)) {
             coloredWord += ANSI_GREEN + word.charAt(j);
           }
-          else if (this.correctWord.indexOf(word.charAt(j)) != -1) {
+          else if (this.nthChar(word, j) <= this.countChar(this.correctWord, word.charAt(j)) - charsInCorrectPos(word, this.correctWord, word.charAt(j))) {
             coloredWord += ANSI_YELLOW + word.charAt(j);
           }
           else {
