@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Random;
+
 public class Wordle {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -5,13 +8,16 @@ public class Wordle {
     public static final String ANSI_YELLOW = "\u001B[33m";
     
     String correctWord;
+    Random rand;
+    List<String> answers;
     String EMPTY_STR = "_____";
     String[] guesses = new String[6];
     int guessNum = 0;
   
-    public Wordle(String correctWord) {
-      this.correctWord = correctWord;
-  
+    public Wordle(List<String> answers) {
+      this.answers = answers;
+      this.rand = new Random();
+      this.correctWord = this.answers.get(this.rand.nextInt(this.answers.size()));
       for (int i = 0; i < this.guesses.length; i++) {
         this.guesses[i] = this.EMPTY_STR;
       }
