@@ -8,6 +8,7 @@ public class Wordle {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     
+    
     String correctWord;
     Random rand;
     List<String> answers;
@@ -84,7 +85,7 @@ public class Wordle {
     public void displayGame() {
       for (int i = 0; i < this.guesses.length; i++) {
         String word = this.guesses[i];
-        String coloredWord = ANSI_WHITE;
+        String coloredWord = ANSI_RESET;
         for (int j = 0; j < word.length(); j++) {
           if (word.charAt(j) == this.correctWord.charAt(j)) {
             coloredWord += ANSI_GREEN + word.charAt(j);
@@ -93,7 +94,7 @@ public class Wordle {
             coloredWord += ANSI_YELLOW + word.charAt(j);
           }
           else {
-            coloredWord += ANSI_WHITE + word.charAt(j);
+            coloredWord += ANSI_RESET + word.charAt(j);
           }
         }
         System.out.println(coloredWord);

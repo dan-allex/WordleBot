@@ -3,10 +3,8 @@ import java.util.Scanner;
 
 class WordlePlayer {
   public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_WHITE = "\u001B[37m";
-  public static final String ANSI_GREEN = "\u001B[32m";
-  public static final String ANSI_YELLOW = "\u001B[33m";
+
     Wordle game;
     Scanner scan;
     
@@ -16,7 +14,7 @@ class WordlePlayer {
     }
     
     public int takeInput() {
-    System.out.println(ANSI_WHITE + "Enter a guess:");
+    System.out.println(ANSI_RESET + "Enter a guess:");
       String guess = scan.next();
       return this.game.inputGuess(guess);
     }
@@ -28,10 +26,10 @@ class WordlePlayer {
       }
   
       if (res == -1) {
-        return ANSI_WHITE + "L";
+        return ANSI_RESET + "L";
       }
       else {
-        return ANSI_WHITE + "W: " + res;
+        return ANSI_RESET + "W: " + res;
       }
     }
   }
