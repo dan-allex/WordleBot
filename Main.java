@@ -15,7 +15,6 @@ public class Main {
         return Collections.singletonList("Corrupted");
     }
 }
-
     public static void main(String[] args) {
       List<String> answers = readLines("answers.txt");
       Scanner scanner = new Scanner(System.in);

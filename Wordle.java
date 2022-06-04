@@ -4,6 +4,7 @@ import java.util.Random;
 public class Wordle {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     
@@ -38,6 +39,7 @@ public class Wordle {
       }
   
       if(this.guessNum == 6) {
+        System.out.println(ANSI_RESET + this.correctWord);
           return -1;
       }
   
@@ -82,7 +84,7 @@ public class Wordle {
     public void displayGame() {
       for (int i = 0; i < this.guesses.length; i++) {
         String word = this.guesses[i];
-        String coloredWord = "";
+        String coloredWord = ANSI_WHITE;
         for (int j = 0; j < word.length(); j++) {
           if (word.charAt(j) == this.correctWord.charAt(j)) {
             coloredWord += ANSI_GREEN + word.charAt(j);
@@ -91,7 +93,7 @@ public class Wordle {
             coloredWord += ANSI_YELLOW + word.charAt(j);
           }
           else {
-            coloredWord += ANSI_BLACK + word.charAt(j);
+            coloredWord += ANSI_WHITE + word.charAt(j);
           }
         }
         System.out.println(coloredWord);
