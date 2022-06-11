@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 class WordlePlayer {
   public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_WHITE = "\u001B[37m";
 
     Wordle game;
     Scanner scan;

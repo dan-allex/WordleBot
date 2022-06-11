@@ -1,29 +1,29 @@
+import java.util.List;
+
 public class WordleBot {
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-      
-    public WordleBot() {
-    }
-  
-    public int inputGuess() {
-        return 0;
+    
+    List<String> answers;
+    public WordleBot(List<String> answers) {
+        this.answers = answers;
     }
     
-    public String playGame() {
+    public String chooseBestWord() {
+        return "salet";
+    }
+
+    public int playGame() {
+        Wordle game = new Wordle(answers);
         int res = 0;
         while (res == 0) {
-          res = inputGuess();
+            String word = chooseBestWord();
+            res = game.inputGuess(word);
         }
     
-        if (res == -1) {
-          return ANSI_RESET + "L";
-        }
-        else {
-          return ANSI_RESET + "W: " + res;
-        }
+        return res;
       }
 
     public void runSeries(int n) {
-        
+
     }
 }
