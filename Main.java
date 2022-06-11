@@ -22,5 +22,7 @@ public class Main {
   
       WordlePlayer player = new WordlePlayer(test, scanner);
       System.out.println(player.playGame());
+
+      WordleBot bot = new WordleBot(answers);
     }
   }
