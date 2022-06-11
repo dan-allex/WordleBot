@@ -40,7 +40,7 @@ public class Wordle {
       }
   
       if(this.guessNum == 6) {
-        System.out.println(ANSI_RESET + this.correctWord);
+        System.out.println(ANSI_RESET + "the correct word is " + this.correctWord);
           return -1;
       }
   
