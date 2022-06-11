@@ -14,7 +14,7 @@ class WordlePlayer {
     }
     
     public int takeInput() {
-    System.out.println(ANSI_RESET + "Enter a guess:");
+      System.out.println(ANSI_RESET + "Enter a guess:");
       String guess = scan.next();
       return this.game.inputGuess(guess);
     }
