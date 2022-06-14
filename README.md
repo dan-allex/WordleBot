@@ -1,3 +1,3 @@
-### WordleBot
+### Wordle
 
-This repository is for the WordleBot project
+Recreation of the famous Wordle Game
