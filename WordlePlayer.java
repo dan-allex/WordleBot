@@ -20,7 +20,10 @@ class WordlePlayer {
   
     public String playGame() {
       int res = 0;
-      while (res == 0) {
+      while (res == 0 || res == -2) {
+        if(res == -2) {
+          System.out.println("enter a valid word!");
+        }
         res = takeInput();
       }
   

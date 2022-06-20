@@ -3,8 +3,6 @@ import java.util.Random;
 
 public class Wordle {
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     
@@ -31,7 +29,13 @@ public class Wordle {
     public int inputGuess(String guess) {
       this.guessNum += 1;
       this.guesses[this.guessNum - 1] = guess;
-
+          java.util.HashSet<String> set = new java.util.HashSet<String>();
+          for(String wordSet: answers) {
+            set.add(wordSet);
+          }
+          if(!set.contains(guess)) {
+            return -2;
+          }
       displayGame();
 
 
