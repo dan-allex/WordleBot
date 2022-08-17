@@ -3,37 +3,32 @@ import java.util.Scanner;
 
 class WordlePlayer {
   public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_GREEN = "\u001B[32m";
-  public static final String ANSI_RED = "\u001B[31m";
 
     Wordle game;
-    Scanner scan = new Scanner(System.in);
+    Scanner scan;
     
-    
-    public WordlePlayer(Wordle newGame, Scanner newScan) {
-      game = newGame;
-      scan = newScan;
-     
+    public WordlePlayer(Wordle game, Scanner scan) {
+      this.game = game;
+      this.scan = scan;
     }
-   
+    
     public int takeInput() {
-      System.out.println(ANSI_GREEN + "Enter a guess:" + ANSI_RESET);
+      System.out.println(ANSI_RESET + "Enter a guess:");
       String guess = scan.next();
-      
-      return game.inputGuess(guess);
+      return this.game.inputGuess(guess);
     }
-    
+  
     public String playGame() {
       int res = 0;
       while (res == 0) {
-           res = takeInput();
+        res = takeInput();
       }
-       if (res == -1) {
-          return "";
+  
+      if (res == -1) {
+        return ANSI_RESET + "L";
       }
-      
       else {
-         return ANSI_GREEN + "You won in " + res + " 4 tries";
-        }
-     }
+        return ANSI_RESET + "W: " + res;
+      }
+    }
   }

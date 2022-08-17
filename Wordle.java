@@ -3,11 +3,12 @@ import java.util.Random;
 
 public class Wordle {
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_RED = "\u001B[31m";
     
-   
+    
     String correctWord;
     Random rand;
     List<String> answers;
@@ -15,52 +16,34 @@ public class Wordle {
     String[] guesses = new String[6];
     int guessNum = 0;
   
-    public Wordle(List<String> newAnswers) {
-      answers = newAnswers;
+    public Wordle(List<String> answers) {
+      this.answers = answers;
       this.rand = new Random();
-      correctWord = answers.get(this.rand.nextInt(this.answers.size()));
+      this.correctWord = this.answers.get(this.rand.nextInt(this.answers.size()));
       for (int i = 0; i < this.guesses.length; i++) {
-        guesses[i] = EMPTY_STR;
+        this.guesses[i] = this.EMPTY_STR;
       }
     }
   
+    // return 0: game still in progress
+    // return -1: game lost
+    // return else: guesses took
     public int inputGuess(String guess) {
-      java.util.HashSet<String> wordSet = new java.util.HashSet<String>();
-      for(String ans: answers) {
-        wordSet.add(ans);
-       
-      }
+      this.guessNum += 1;
+      this.guesses[this.guessNum - 1] = guess;
 
-      if(!wordSet.contains(guess)) {
-        if(guess.length() == 5) {
-        System.out.println(ANSI_RED + "Enter a valid word");
-        return 0;
-        }
-      }
-      if(guess.length() > 5) {
-        System.out.println(ANSI_RED + "Enter a 5 letter word");
-        return 0;
-      }
-
-      if(guess.length() < 5) {
-        System.out.println(ANSI_RED + "Word is too short");
-        return 0;
-      }
-
-    guessNum += 1;
-    guesses[guessNum - 1] = guess;
       displayGame();
 
-      if (guess.equals(correctWord)) {
-        return guessNum;
-      }
 
-      else if(guessNum == 6) {
-        this.guesses[guessNum - 1] = guess;
-        System.out.println(ANSI_RED + "you lost. The correct word is " + correctWord);
+     if (guess.equals(this.correctWord)) {
+        return this.guessNum;
+      }
+  
+      if(this.guessNum == 6) {
+        System.out.println(ANSI_RESET + this.correctWord);
           return -1;
       }
-
+  
       return 0;
   }
 
